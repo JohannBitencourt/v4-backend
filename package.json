@@ -3,6 +3,7 @@
   "author": "Johann Bitencourt<johann.bitencourt@gmail.com>",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
@@ -18,7 +19,8 @@
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.5.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.29"
+    "typeorm": "^0.2.29",
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

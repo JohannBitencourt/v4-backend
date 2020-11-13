@@ -4,10 +4,20 @@ import { getRepository } from 'typeorm'
 import Tool from '@models/tool.model'
 
 class ToolController {
-  async getToolById (req: Request, res: Response) {
+  async getTool (req: Request, res: Response) {
     const repository = getRepository(Tool)
-    const tools = await repository.find(req.body.id)
-    return res.json(tools)
+    const { tags } = req.query
+    const tools = await repository.find()
+    const search = await repository
+      .createQueryBuilder('tools')
+      .where(':tags = ANY(tags)', { tags: tags })
+      .getMany()
+
+    if (!tags) {
+      return res.json(tools)
+    }
+
+    return res.json(search)
   }
 
   async registerTool (req: Request, res: Response) {

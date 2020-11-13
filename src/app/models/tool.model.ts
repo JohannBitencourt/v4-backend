@@ -1,8 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
 @Entity('tools')
 class Tool {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column()
