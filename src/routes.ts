@@ -12,9 +12,9 @@ router.get('/', (req, res) => {
   return res.json({ message: 'Hello world' })
 })
 
-router.get('/tools', authMiddlewares, ToolController.getTool)
-router.post('/tools', authMiddlewares, ToolController.registerTool)
-router.delete('/tools/:id', authMiddlewares, ToolController.deleteTool)
+router.get('/tools', ToolController.getTool)
+router.post('/tools', ToolController.registerTool)
+router.delete('/tools/:id', ToolController.deleteTool)
 
 router.post('/users', UserController.register)
 router.post('/auth', AuthController.auth)

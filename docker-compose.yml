@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  api:
+    container_name: api
+    build: '.'
+    entrypoint: ["./init.sh"]
+    volumes:
+      - .:/home/node/api
+      - /home/node/api/node_modules
+    networks:
+      - app-connect
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    depends_on:
+      - postgres-vuttr
+    command: ["yarn", "dev"]
+
+  postgres-vuttr:
+    container_name: postgres-vuttr
+    image: postgres:11
+    restart: always
+    volumes:
+      - postgres-data:/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} 
+    networks:
+      - app-connect 
+    ports:
+      - '5432:5432'
+      
+volumes:
+  postgres-data:
+
+networks:
+  app-connect:
+      driver: bridge
